@@ -8,7 +8,7 @@ import configPrettier from 'eslint-config-prettier'
 export default [
   // 忽略文件
   {
-    ignores: ['dist/', 'node_modules/'],
+    ignores: ['dist/', 'node_modules/', '.stylelintrc.json', '*.json'],
   },
 
   // 基础配置
