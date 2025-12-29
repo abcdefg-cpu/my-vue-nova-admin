@@ -1,20 +1,20 @@
 import { createApp } from 'vue'
-import { createPinia } from 'pinia'
-
+/* 仓库 */
+import pinia from './stores'
+/* 路由 */
+import router from './router'
 /* 样式 */
 import '@/styles/index.scss'
-
 /* svg图标 */
 import 'virtual:svg-icons-register'
 import globalComponent from './components/index'
-
+/* App */
 import App from './App.vue'
-import router from './router'
 
 /* 创建app */
 const app = createApp(App)
 
-app.use(createPinia())
+app.use(pinia)
 app.use(router)
 app.use(globalComponent)
 

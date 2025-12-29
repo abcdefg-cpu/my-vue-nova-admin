@@ -85,6 +85,19 @@ export default [
       // 'vue/script-setup-uses-vars': 'error',
       'vue/no-mutating-props': 'off',
       'vue/attribute-hyphenation': 'off',
+      // Vue 标签强制自闭合
+      'vue/html-self-closing': [
+        'error',
+        {
+          html: {
+            void: 'always',
+            normal: 'always',
+            component: 'always',
+          },
+          svg: 'always',
+          math: 'always',
+        },
+      ],
     },
   },
 ]
