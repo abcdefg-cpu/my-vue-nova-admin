@@ -5,6 +5,7 @@ import zhCn from 'element-plus/es/locale/lang/zh-cn'
 
 <template>
   <!--el-config-provider：全局配置国际化  -->
+
   <el-config-provider :locale="zhCn">
     <RouterView />
   </el-config-provider>
