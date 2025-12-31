@@ -1,1 +1,6 @@
 * text=auto eol=lf
+# 自动生成文件 - 不参与 diff 和 merge
+*.d.ts binary
+*.d.ts -diff
+*.d.ts -merge
+EOF
