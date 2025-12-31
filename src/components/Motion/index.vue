@@ -1,4 +1,5 @@
 <template>
+  <!-- 把v-motion封装为组件 -->
   <!-- 动画包裹容器 -->
   <div ref="motionRef">
     <!-- 使用插槽显示内容 -->
@@ -32,7 +33,7 @@ onMounted(() => {
   if (!motionRef.value) return
 
   // 使用useMotion创建动画
-  const motion = useMotion(motionRef, {
+  useMotion(motionRef, {
     // 初始状态：隐藏在下方的位置
     initial: {
       opacity: 0, // 完全透明

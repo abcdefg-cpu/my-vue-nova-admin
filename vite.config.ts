@@ -32,6 +32,7 @@ export default defineConfig({
     svgLoader(),
     // 自动引入element-plus
     AutoImport({
+      dts: '.temp/auto-imports.d.ts', // 生成到临时目录
       resolvers: [ElementPlusResolver()],
     }),
     Components({
@@ -39,7 +40,7 @@ export default defineConfig({
       dirs: ['src/components'],
 
       // 自动生成类型声明文件
-      dts: 'src/components.d.ts',
+      dts: '.temp/components.d.ts', // 生成到临时目录
 
       // 解析器：Element Plus 组件
       resolvers: [ElementPlusResolver()],

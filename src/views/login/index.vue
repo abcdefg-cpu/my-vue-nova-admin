@@ -19,7 +19,11 @@ import setting from '@/setting'
           <SvgIcon name="avatar" :size="80" />
         </div>
         <!-- 标题 -->
-        <h2 class="title">{{ setting.title }}</h2>
+        <h2 class="title">
+          <TypeIt>
+            {{ setting.title }}
+          </TypeIt>
+        </h2>
         <!-- 表单 -->
         <el-form>
           <Motion>
@@ -97,7 +101,8 @@ import setting from '@/setting'
       .avatar {
         display: flex;
         justify-content: center;
-        width: 350px;
+        // align-items: flex-start;
+        width: 100%;
         height: 80px;
       }
 
