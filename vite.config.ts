@@ -82,6 +82,13 @@ export default defineConfig({
       plugins: [tailwindcss()],
     },
   },
+  /* iconify */
+  optimizeDeps: {
+    include: [
+      '@iconify/vue',
+      '@iconify-json/ep', // 预构建图标集
+    ],
+  },
   /* 代理服务器 */
   // server: {
   //   proxy: {

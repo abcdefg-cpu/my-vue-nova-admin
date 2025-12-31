@@ -1,5 +1,6 @@
 <script lang="ts" setup name="Login">
 import setting from '@/setting'
+// import wechat from "@iconify-json/ep"
 </script>
 
 <template>
@@ -40,7 +41,7 @@ import setting from '@/setting'
 
           <Motion :delay="150">
             <el-form-item size="large">
-              <div class="w-full flex-bc">
+              <div class="w-full flex-bc gap-2">
                 <el-input placeholder="验证码" prefix-icon="Key" clearable />
                 <ImageVerify />
               </div>
@@ -49,10 +50,30 @@ import setting from '@/setting'
 
           <Motion :delay="200">
             <el-form-item>
+              <div class="w-full flex-bc">
+                <el-checkbox label="记住我" />
+                <el-button type="primary" link>忘记密码？</el-button>
+              </div>
+            </el-form-item>
+          </Motion>
+
+          <Motion :delay="250">
+            <el-form-item>
               <el-button type="primary" class="w-full">登录</el-button>
             </el-form-item>
           </Motion>
         </el-form>
+
+        <div class="mt-15!">
+          <el-divider>
+            <span class="overflow-visible text-gray-500 text-xs">第三方登录方式</span>
+          </el-divider>
+          <div class="flex-ac">
+            <AutoIcon icon="mdi:wechat" class="iconStyle" color="#999" width="20" />
+            <AutoIcon icon="fa:weibo" class="iconStyle" color="#999" width="20" />
+            <AutoIcon icon="mdi:github" class="iconStyle" color="#999" width="20" />
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -73,7 +94,7 @@ import setting from '@/setting'
 .login-container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 18rem;
+  // gap: 10rem;
   width: 100vw;
   max-width: 100%;
   height: 100vh;
@@ -85,25 +106,42 @@ import setting from '@/setting'
     display: flex;
     align-items: center;
     justify-content: end;
+    transition: transform 0.5s ease;
+
+    &:hover {
+      transform: scale(1.02);
+    }
   }
 
   /* 表单 */
   .login-box {
     display: flex;
     align-items: center;
+    justify-content: center;
     overflow: hidden;
     text-align: center;
 
     .login-form {
-      /* 表单图标 */
-      width: 360px;
+      width: 400px;
+      padding: 2.5rem;
+      background-color: #fff;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgb(0 0 0 / 8%);
+      transition: all 0.3s ease;
 
+      &:hover {
+        box-shadow: 0 15px 35px rgb(0 0 0 / 12%);
+      }
+
+      /* 表单图标 */
       .avatar {
         display: flex;
         justify-content: center;
-        // align-items: flex-start;
-        width: 100%;
-        height: 80px;
+        transition: transform 0.3s ease;
+
+        &:hover {
+          transform: rotate(5deg) scale(1.05);
+        }
       }
 
       /* 表单标题 */
@@ -117,10 +155,6 @@ import setting from '@/setting'
         text-transform: uppercase;
       }
     }
-  }
-
-  :deep(.el-input-group__append, .el-input-group__prepend) {
-    padding: 0;
   }
 }
 </style>
