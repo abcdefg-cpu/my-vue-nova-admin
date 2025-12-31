@@ -8,6 +8,8 @@ import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
+import svgLoader from 'vite-svg-loader'
+import tailwindcss from '@tailwindcss/postcss'
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -26,18 +28,46 @@ export default defineConfig({
       iconDirs: [path.resolve(process.cwd(), 'src/assets/icons')],
       symbolId: 'icon-[dir]-[name]',
     }),
+    // 把svg作为组件引入
+    svgLoader(),
     // 自动引入element-plus
     AutoImport({
       resolvers: [ElementPlusResolver()],
     }),
     Components({
+      // 组件目录，自动扫描
+      dirs: ['src/components'],
+
+      // 自动生成类型声明文件
+      dts: 'src/components.d.ts',
+
+      // 解析器：Element Plus 组件
       resolvers: [ElementPlusResolver()],
+
+      // 包含的文件类型
+      extensions: ['vue'],
+
+      // 排除的文件
+      exclude: [/node_modules/, /\.git/],
+
+      // 深度导入
+      deep: true,
+
+      // 目录作为命名空间
+      directoryAsNamespace: false,
+
+      // 全局组件
+      globalNamespaces: [],
+
+      // 指令自动导入
+      directives: true,
     }),
   ],
   /* 解析 */
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
+      vue: 'vue/dist/vue.esm-bundler.js', // 添加 Vue 别名
     },
   },
   /* scss全局变量的配置 */
@@ -46,6 +76,9 @@ export default defineConfig({
       scss: {
         additionalData: `@use "@/styles/variable.scss" as *;`,
       },
+    },
+    postcss: {
+      plugins: [tailwindcss()],
     },
   },
   /* 代理服务器 */

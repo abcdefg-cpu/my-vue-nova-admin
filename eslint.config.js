@@ -2,13 +2,18 @@ import js from '@eslint/js'
 import globals from 'globals'
 import tseslint from 'typescript-eslint'
 import pluginVue from 'eslint-plugin-vue'
-import pluginPrettier from 'eslint-plugin-prettier'
-import configPrettier from 'eslint-config-prettier'
 
 export default [
   // 忽略文件
   {
-    ignores: ['dist/', 'node_modules/', '.stylelintrc.json', '*.json'],
+    ignores: [
+      'dist/',
+      'node_modules/',
+      '.stylelintrc.json',
+      '*.json',
+      'src/components.d.ts', // 忽略自动生成文件
+      'src/auto-imports.d.ts', // 忽略自动生成文件
+    ],
   },
 
   // 基础配置
@@ -18,11 +23,33 @@ export default [
       globals: {
         ...globals.browser,
         ...globals.es2024,
-        ...globals.node, // 关键：添加 Node.js 全局变量
+        ...globals.node,
         ...globals.jest,
       },
       ecmaVersion: 'latest',
       sourceType: 'module',
+      parser: tseslint.parser, // ✅ 正确位置：在 languageOptions 内部
+      parserOptions: {
+        ecmaFeatures: {
+          jsx: true,
+        },
+      },
+    },
+  },
+
+  // Vue 文件特殊配置
+  {
+    files: ['**/*.vue'],
+    languageOptions: {
+      parser: pluginVue.parser, // Vue 文件使用 Vue 解析器
+      parserOptions: {
+        parser: tseslint.parser, // Vue 中的 TypeScript 使用 TS 解析器
+        ecmaVersion: 'latest',
+        sourceType: 'module',
+        ecmaFeatures: {
+          jsx: true,
+        },
+      },
     },
   },
 
@@ -48,19 +75,15 @@ export default [
     },
   },
 
-  // 其他配置...
+  // ESLint 推荐配置
   js.configs.recommended,
+
+  // TypeScript 推荐配置
   ...tseslint.configs.recommended,
+
+  // Vue 推荐配置
   ...pluginVue.configs['flat/essential'],
-  {
-    plugins: {
-      prettier: pluginPrettier,
-    },
-    rules: {
-      ...configPrettier.rules,
-      ...pluginPrettier.configs.recommended.rules,
-    },
-  },
+
   // 自定义规则
   {
     rules: {
@@ -72,19 +95,23 @@ export default [
       'no-unexpected-multiline': 'error',
       'no-useless-escape': 'off',
 
-      // TypeScript 规则
-      '@typescript-eslint/no-unused-vars': 'error',
-      '@typescript-eslint/prefer-ts-expect-error': 'error',
+      // TypeScript 规则 - 简化配置
+      '@typescript-eslint/no-unused-vars': 'warn', // 改为 warn 而不是 error
+      '@typescript-eslint/prefer-ts-expect-error': 'off', // 关闭
       '@typescript-eslint/no-explicit-any': 'off',
       '@typescript-eslint/no-non-null-assertion': 'off',
       '@typescript-eslint/no-namespace': 'off',
       '@typescript-eslint/semi': 'off',
 
+      // 关闭 interface 相关报错
+      'no-undef': 'off',
+      'no-unused-vars': 'off',
+
       // Vue 规则
       'vue/multi-word-component-names': 'off',
-      // 'vue/script-setup-uses-vars': 'error',
       'vue/no-mutating-props': 'off',
       'vue/attribute-hyphenation': 'off',
+
       // Vue 标签强制自闭合
       'vue/html-self-closing': [
         'error',

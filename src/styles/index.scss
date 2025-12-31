@@ -1,2 +1,24 @@
 /* 重置样式 */
 @import './reset';
+
+/* 自定义全局 CssVar */
+:root {
+  /* 左侧菜单展开、收起动画时长 */
+  --nova-transition-duration: 0.3s;
+
+  /* 常用border-color 需要时可取用 */
+  --nova-border-color: rgb(5 5 5 / 6%);
+
+  /* switch关闭状态下的color 需要时可取用 */
+  --nova-switch-off-color: #a6a6a6;
+
+  /** 主题色 */
+  --nova-theme-sub-menu-active-text: initial;
+  --nova-theme-menu-bg: none;
+  --nova-theme-menu-hover: none;
+  --nova-theme-sub-menu-bg: transparent;
+  --nova-theme-menu-text: initial;
+  --nova-theme-sidebar-logo: none;
+  --nova-theme-menu-title-hover: initial;
+  --nova-theme-menu-active-before: transparent;
+}

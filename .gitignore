@@ -37,3 +37,6 @@ __screenshots__/
 
 # History files
 .history/
+
+
+src/auto-imports.d.ts

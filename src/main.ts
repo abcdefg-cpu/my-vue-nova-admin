@@ -5,9 +5,14 @@ import pinia from './stores'
 import router from './router'
 /* 样式 */
 import '@/styles/index.scss'
+import '@/styles/tailwind.css'
+/* element-plus图标 */
+import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 /* svg图标 */
 import 'virtual:svg-icons-register'
-import globalComponent from './components/index'
+/* motion动画 */
+import { MotionPlugin } from '@vueuse/motion'
+
 /* App */
 import App from './App.vue'
 
@@ -16,6 +21,11 @@ const app = createApp(App)
 
 app.use(pinia)
 app.use(router)
-app.use(globalComponent)
+app.use(MotionPlugin)
+
+/* 注册图标 */
+for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
+  app.component(key, component)
+}
 
 app.mount('#app')

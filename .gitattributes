@@ -3,4 +3,3 @@
 *.d.ts binary
 *.d.ts -diff
 *.d.ts -merge
-EOF
