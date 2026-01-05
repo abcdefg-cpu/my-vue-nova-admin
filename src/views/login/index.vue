@@ -1,6 +1,9 @@
 <script lang="ts" setup name="Login">
 import setting from '@/setting'
-// import wechat from "@iconify-json/ep"
+import LoginRegist from './components/LoginRegist.vue'
+import LoginUpdate from './components/LoginUpdate.vue'
+import { useUserStore } from '@/stores/modules/user'
+const userStore = useUserStore()
 </script>
 
 <template>
@@ -26,7 +29,7 @@ import setting from '@/setting'
           </TypeIt>
         </h2>
         <!-- 表单 -->
-        <el-form>
+        <el-form v-if="userStore.currentPage === 0">
           <Motion>
             <el-form-item size="large">
               <el-input placeholder="账号" prefix-icon="User" clearable />
@@ -52,7 +55,9 @@ import setting from '@/setting'
             <el-form-item>
               <div class="w-full flex-bc">
                 <el-checkbox label="记住我" />
-                <el-button type="primary" link>忘记密码？</el-button>
+                <el-button type="primary" link @click="userStore.currentPage = 2">
+                  忘记密码？
+                </el-button>
               </div>
             </el-form-item>
           </Motion>
@@ -60,20 +65,29 @@ import setting from '@/setting'
           <Motion :delay="250">
             <el-form-item>
               <el-button type="primary" class="w-full">登录</el-button>
+              <el-button class="w-full ml-0! mt-3!" @click="userStore.currentPage = 1">
+                注册
+              </el-button>
             </el-form-item>
           </Motion>
         </el-form>
 
-        <div class="mt-15!">
-          <el-divider>
-            <span class="overflow-visible text-gray-500 text-xs">第三方登录方式</span>
-          </el-divider>
-          <div class="flex-ac">
-            <AutoIcon icon="mdi:wechat" class="iconStyle" color="#999" width="20" />
-            <AutoIcon icon="fa:weibo" class="iconStyle" color="#999" width="20" />
-            <AutoIcon icon="mdi:github" class="iconStyle" color="#999" width="20" />
+        <!-- 组件 -->
+        <LoginRegist v-if="userStore.currentPage === 1" />
+        <LoginUpdate v-if="userStore.currentPage === 2" />
+
+        <Motion :delay="300" v-if="userStore.currentPage === 0">
+          <div class="mt-10!">
+            <el-divider>
+              <span class="overflow-visible text-gray-500 text-xs">第三方登录方式</span>
+            </el-divider>
+            <div class="flex-ac">
+              <AutoIcon icon="mdi:wechat" class="iconStyle" color="#999" width="20" />
+              <AutoIcon icon="fa:weibo" class="iconStyle" color="#999" width="20" />
+              <AutoIcon icon="mdi:github" class="iconStyle" color="#999" width="20" />
+            </div>
           </div>
-        </div>
+        </Motion>
       </div>
     </div>
   </div>
