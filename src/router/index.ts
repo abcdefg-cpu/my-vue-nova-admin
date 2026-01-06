@@ -2,6 +2,8 @@ import { createRouter, createWebHistory } from 'vue-router'
 import setting from '@/setting'
 import nProgress from 'nprogress'
 import 'nprogress/nprogress.css'
+import { GET_TOKEN } from '@/utils/token'
+import { useUserStore } from '@/stores/modules/user'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -60,7 +62,8 @@ router.beforeEach(async (to, from, next) => {
   }
 
   // 登录状态（这里应该从 Pinia 或 localStorage 获取）
-  const token = localStorage.getItem('token') || ''
+  const userStore = useUserStore()
+  const token = GET_TOKEN() || userStore.token
   const hasToken = !!token
 
   // 白名单：不需要登录就可以访问的页面

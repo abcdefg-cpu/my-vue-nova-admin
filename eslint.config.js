@@ -88,6 +88,7 @@ export default [
   {
     rules: {
       // ESLint 规则
+      'prefer-const': 'off', // 关闭强制使用 const
       'no-var': 'error',
       'no-multiple-empty-lines': ['warn', { max: 1 }],
       'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',

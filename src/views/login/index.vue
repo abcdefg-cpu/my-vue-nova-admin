@@ -1,9 +1,68 @@
 <script lang="ts" setup name="Login">
+import { reactive, ref } from 'vue'
 import setting from '@/setting'
 import LoginRegist from './components/LoginRegist.vue'
 import LoginUpdate from './components/LoginUpdate.vue'
+import { loginRules } from './utils/rules'
 import { useUserStore } from '@/stores/modules/user'
+import { useRoute, useRouter } from 'vue-router'
+import { ElNotification } from 'element-plus'
+// 仓库
 const userStore = useUserStore()
+// 路由
+const route = useRoute()
+const router = useRouter()
+
+/* 状态 */
+// 表单对象
+const loginFormRef = ref()
+// 表单数据
+const loginForm = reactive({
+  username: 'admin',
+  password: '111111',
+  verifyCode: '',
+})
+// 加载状态
+const loading = ref(false)
+// 禁用按钮
+const disabled = ref(false)
+
+/* 方法 */
+// 登录
+const onLogin = async () => {
+  try {
+    // 1、统一校验表单
+    if (!loginFormRef.value) return
+    await loginFormRef.value.validate()
+    // 2、按钮状态
+    loading.value = true
+    disabled.value = true
+    // 3、请求
+    await userStore.userLogin({
+      username: loginForm.username,
+      password: loginForm.password,
+    })
+    // 4、跳转路由：登录的时候,路由路径当中是否有query参数，如果有就往query参数挑战，没有跳转到首页
+    const redirect: any = route.query.redirect
+    router.push({ path: redirect || '/' })
+    // 5、登录提示
+    ElNotification.success({
+      title: 'HI,下午好！',
+      message: '欢迎回来！',
+    })
+  } catch (error) {
+    // 捕获可能的非请求错误（如路由跳转错误）
+    // 业务错误已经在请求工具中处理并显示了
+    // 只在开发环境记录，不显示给用户
+    if (import.meta.env.DEV) {
+      console.error('登录流程意外错误:', error)
+    }
+  } finally {
+    // 6、按钮状态恢复
+    loading.value = false
+    disabled.value = false
+  }
+}
 </script>
 
 <template>
@@ -29,24 +88,45 @@ const userStore = useUserStore()
           </TypeIt>
         </h2>
         <!-- 表单 -->
-        <el-form v-if="userStore.currentPage === 0">
+        <el-form
+          ref="loginFormRef"
+          :model="loginForm"
+          :rules="loginRules"
+          v-if="userStore.currentPage === 0"
+        >
           <Motion>
-            <el-form-item size="large">
-              <el-input placeholder="账号" prefix-icon="User" clearable />
+            <el-form-item size="large" prop="username">
+              <el-input
+                v-model="loginForm.username"
+                placeholder="账号"
+                prefix-icon="User"
+                clearable
+              />
             </el-form-item>
           </Motion>
 
           <Motion :delay="100">
-            <el-form-item size="large">
-              <el-input placeholder="密码" prefix-icon="Lock" clearable show-password />
+            <el-form-item size="large" prop="password">
+              <el-input
+                v-model="loginForm.password"
+                placeholder="密码"
+                prefix-icon="Lock"
+                clearable
+                show-password
+              />
             </el-form-item>
           </Motion>
 
           <Motion :delay="150">
-            <el-form-item size="large">
+            <el-form-item size="large" prop="verifyCode">
               <div class="w-full flex-bc gap-2">
-                <el-input placeholder="验证码" prefix-icon="Key" clearable />
-                <ImageVerify />
+                <el-input
+                  v-model="loginForm.verifyCode"
+                  placeholder="验证码"
+                  prefix-icon="Key"
+                  clearable
+                />
+                <ImageVerify v-model:code="userStore.verifyCode" />
               </div>
             </el-form-item>
           </Motion>
@@ -54,7 +134,33 @@ const userStore = useUserStore()
           <Motion :delay="200">
             <el-form-item>
               <div class="w-full flex-bc">
-                <el-checkbox label="记住我" />
+                <el-checkbox v-model="userStore.checked">
+                  <span class="flex items-center gap-1">
+                    <select
+                      v-model="userStore.loginDay"
+                      :style="{
+                        border: 'none',
+                        appearance: 'none',
+                        outline: 'none',
+                        background: 'none',
+                        width: userStore.loginDay < 10 ? '10px' : '16px',
+                      }"
+                    >
+                      <option value="1">1</option>
+                      <option value="7">7</option>
+                      <option value="30">30</option>
+                    </select>
+                    天免登录
+                    <el-tooltip
+                      content="勾选并登录后，规定天数内无需输入用户名和密码会自动登入系统"
+                      placement="top"
+                      effect="dark"
+                    >
+                      <!-- 这里渲染图标需要后面修改 -->
+                      <el-icon><InfoFilled /></el-icon>
+                    </el-tooltip>
+                  </span>
+                </el-checkbox>
                 <el-button type="primary" link @click="userStore.currentPage = 2">
                   忘记密码？
                 </el-button>
@@ -64,7 +170,15 @@ const userStore = useUserStore()
 
           <Motion :delay="250">
             <el-form-item>
-              <el-button type="primary" class="w-full">登录</el-button>
+              <el-button
+                type="primary"
+                class="w-full"
+                :loading="loading"
+                :disabled="disabled"
+                @click="onLogin"
+              >
+                登录
+              </el-button>
               <el-button class="w-full ml-0! mt-3!" @click="userStore.currentPage = 1">
                 注册
               </el-button>
