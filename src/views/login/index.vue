@@ -7,6 +7,10 @@ import { loginRules } from './utils/rules'
 import { useUserStore } from '@/stores/modules/user'
 import { useRoute, useRouter } from 'vue-router'
 import { ElNotification } from 'element-plus'
+import { useFormatTime } from '@/utils/formatTime'
+
+const { welcome } = useFormatTime()
+
 // 仓库
 const userStore = useUserStore()
 // 路由
@@ -47,7 +51,7 @@ const onLogin = async () => {
     router.push({ path: redirect || '/' })
     // 5、登录提示
     ElNotification.success({
-      title: 'HI,下午好！',
+      title: `HI,${welcome.value}!`,
       message: '欢迎回来！',
     })
   } catch (error) {
