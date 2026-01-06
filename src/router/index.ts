@@ -64,12 +64,11 @@ router.beforeEach(async (to, from, next) => {
   // 登录状态（这里应该从 Pinia 或 localStorage 获取）
   const userStore = useUserStore()
   const token = GET_TOKEN() || userStore.token
-  const hasToken = !!token
 
   // 白名单：不需要登录就可以访问的页面
   const whiteList = ['/login', '/404']
 
-  if (hasToken) {
+  if (token) {
     // 已登录
     if (to.path === '/login') {
       // 已登录访问登录页，重定向到首页

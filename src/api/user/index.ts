@@ -2,7 +2,7 @@ import request from '@/utils/request'
 import type { LoginRequestData, LoginResponseData } from './types'
 
 const enum API {
-  LOGIN_URL = '/admin/acl/index/info',
+  LOGIN_URL = '/admin/acl/index/login',
 }
 
 // 用户登录
