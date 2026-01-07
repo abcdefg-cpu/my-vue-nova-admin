@@ -1,5 +1,5 @@
 export default {
   title: 'NovaAdmin',
-  logo: '/logo.png',
+  logo: '/logo.svg',
   logoHidden: true,
 }

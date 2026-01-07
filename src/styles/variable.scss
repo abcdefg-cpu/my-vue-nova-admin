@@ -1,1 +1,29 @@
 /* 项目的全局样式变量 */
+// /* 左侧菜单展开、收起动画时长 */
+// $nova-transition-duration: 0.3s;
+
+// /* switch关闭状态下的color 需要时可取用 */
+// $nova-switch-off-color: #a6a6a6;
+
+// /** 主题色 */
+// $nova-theme-sub-menu-active-text: initial;
+// $nova-theme-menu-bg: none;
+// $nova-theme-menu-hover: none;
+// $nova-theme-sub-menu-bg: transparent;
+// $nova-theme-menu-text: initial;
+// $nova-theme-sidebar-logo: none;
+// $nova-theme-menu-title-hover: initial;
+// $nova-theme-menu-active-before: transparent;
+
+// // 顶部导航的高度
+// $base-tabbar-height: 50px;
+
+/* 常用border-color */
+$nova-border-color: rgb(5 5 5 / 6%);
+
+/* 左侧菜单 */
+$nova-menu-width: 260px;
+$nova-menu-min-width: 50px;
+$nova-menu-background: #fff;
+$nova-menu-logo-height: 50px;
+$nova-menu-logo-title-fontSize: 18px;
