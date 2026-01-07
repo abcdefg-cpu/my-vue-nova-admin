@@ -45,6 +45,11 @@ export async function loadIconSet(prefix: string): Promise<boolean> {
 
   try {
     switch (prefix) {
+      case 'ri': {
+        const riIcons = await import('@iconify-json/ri/icons.json')
+        addCollection(riIcons.default)
+        break
+      }
       case 'ep': {
         const epIcons = await import('@iconify-json/ep/icons.json')
         addCollection(epIcons.default)
@@ -60,6 +65,7 @@ export async function loadIconSet(prefix: string): Promise<boolean> {
         addCollection(faIcons.default)
         break
       }
+
       default:
         console.warn(`不支持的图标前缀: ${prefix}`)
         return false
@@ -74,16 +80,30 @@ export async function loadIconSet(prefix: string): Promise<boolean> {
  * 加载常用图标（预加载）
  */
 export async function preloadEssentialIcons(): Promise<void> {
-  const icons: string[] = []
+  const essentialIcons = [
+    'ri:home-line',
+    'ri:user-line',
+    'ri:settings-line',
+    'ri:search-line',
+    'ri:add-line',
+    'ri:edit-line',
+    'ri:delete-line',
+    'ri:save-line',
+    'ri:close-line',
+    'ri:menu-line',
+    'ri:arrow-right-line',
+    'ri:arrow-left-line',
+    'ri:download-line',
+    'ri:upload-line',
+    'ri:refresh-line',
+    'ri:information-line',
+    'ri:alert-line',
+    'ri:check-line',
+    'ri:menu-fold-fill',
+  ]
 
-  Object.entries(ESSENTIAL_ICONS).forEach(([prefix, iconNames]) => {
-    iconNames.forEach((iconName) => {
-      icons.push(`${prefix}:${iconName}`)
-    })
-  })
-
-  await loadIconsBatch(icons)
-  console.log('预加载常用图标完成')
+  await loadIcons(essentialIcons)
+  console.log('Remix Icon 常用图标预加载完成')
 }
 
 /**

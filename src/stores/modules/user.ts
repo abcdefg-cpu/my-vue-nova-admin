@@ -3,6 +3,8 @@ import { ref } from 'vue'
 import { LoginAPI } from '@/api/user'
 import type { LoginRequestData, LoginResponseData } from '@/api/user/types'
 import { SET_TOKEN } from '@/utils/token'
+import { constantRoutes } from '@/router/routes'
+import { MenuItem } from '@/types/router'
 
 export const useUserStore = defineStore(
   'nova-user',
@@ -18,6 +20,8 @@ export const useUserStore = defineStore(
     const verifyCode = ref('')
     // token
     const token = ref('')
+    // 静态路由列表
+    const menuRoutes: MenuItem[] = constantRoutes
     // 用户信息
     const userInfo = ref({})
 
@@ -50,6 +54,7 @@ export const useUserStore = defineStore(
       checked,
       verifyCode,
       token,
+      menuRoutes,
       userInfo,
       userLogin,
       getUserInfo,

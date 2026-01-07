@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.3.2",
+    "@iconify-json/ri": "^1.2.7",
     "@iconify/core": "^4.1.0",
     "@iconify/vue": "^5.0.0",
     "@vueuse/motion": "^3.0.3",
