@@ -1,11 +1,29 @@
 <script lang="ts" setup name="LayoutFold">
 import AutoIcon from '@/components/Iconify/AutoIcon.vue'
+import { useLayoutStore } from '@/stores/modules/layout'
+/* 仓库*/
+const layoutStore = useLayoutStore()
+
+/* 业务 */
+// 点击折叠按钮，缩小菜单width
+const foldMenu = () => {
+  layoutStore.toggle()
+}
 </script>
 
 <template>
   <div class="fold-container">
-    <el-tooltip effect="light" content="点击折叠" placement="right">
-      <AutoIcon icon="ri:menu-fold-fill" class="fold-icon" />
+    <el-tooltip
+      effect="light"
+      :content="layoutStore.fold ? '点击展开' : '点击折叠'"
+      placement="right"
+    >
+      <AutoIcon
+        icon="ri:menu-fold-fill"
+        :style="layoutStore.iconStyle"
+        class="fold-icon"
+        @click="foldMenu"
+      />
     </el-tooltip>
   </div>
 </template>

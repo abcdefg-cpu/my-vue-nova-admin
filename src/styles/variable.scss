@@ -15,11 +15,11 @@
 // $nova-theme-menu-title-hover: initial;
 // $nova-theme-menu-active-before: transparent;
 
-// // 顶部导航的高度
-// $base-tabbar-height: 50px;
-
 /* 常用border-color */
 $nova-border-color: rgb(5 5 5 / 6%);
+
+/* layout */
+$nova-base-background: #ebe6e7;
 
 /* 左侧菜单 */
 $nova-menu-width: 260px;
@@ -27,3 +27,43 @@ $nova-menu-min-width: 50px;
 $nova-menu-background: #fff;
 $nova-menu-logo-height: 50px;
 $nova-menu-logo-title-fontSize: 18px;
+
+// 顶部导航的高度
+$nova-tabbar-height: 80px;
+
+// src/styles/variable.scss
+
+// /* 颜色变量 */
+// $primary-color: #1890ff;
+// $success-color: #52c41a;
+// $warning-color: #faad14;
+// $error-color: #ff4d4f;
+// $info-color: #1890ff;
+
+// /* 字体变量 */
+// $font-family:
+//   -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+// $font-size-base: 14px;
+// $font-size-lg: 16px;
+// $font-size-sm: 12px;
+
+// /* 尺寸变量 */
+// $border-radius-base: 6px;
+// $border-radius-sm: 4px;
+// $border-radius-lg: 8px;
+
+// /* 间距变量 */
+// $spacing-xs: 4px;
+// $spacing-sm: 8px;
+// $spacing-md: 16px;
+// $spacing-lg: 24px;
+// $spacing-xl: 32px;
+
+// /* 阴影变量 */
+// $box-shadow-base: 0 2px 8px rgba(0, 0, 0, 0.15);
+// $box-shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.2);
+
+// /* 布局变量 */
+// $header-height: 64px;
+// $sidebar-width: 200px;
+// $sidebar-collapsed-width: 80px;
