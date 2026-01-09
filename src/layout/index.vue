@@ -17,8 +17,7 @@
 
     <!-- 顶部导航区 -->
     <div class="layout-tabbar" :class="{ layoutFold: layoutStore.fold }">
-      <!-- 设置 -->
-      <!-- 标签 -->
+      <Tabbar />
     </div>
 
     <!-- 中间内容区 -->
@@ -33,6 +32,7 @@
 import Logo from './components/lay-logo/index.vue'
 import MenuItem from './components/lay-menu/index.vue'
 import Fold from './components/lay-fold/index.vue'
+import Tabbar from './components/lay-tabbar/index.vue'
 import Main from './components/lay-main/index.vue'
 import { useRoute } from 'vue-router'
 import { useUserStore } from '@/stores/modules/user'
