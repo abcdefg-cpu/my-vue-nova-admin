@@ -7,8 +7,6 @@ export const useLayoutStore = defineStore(
     /* 状态 */
     // 菜单是否折叠
     const fold = ref(false)
-    // 菜单的宽度
-    const width = computed(() => (fold.value ? '50px' : '260px'))
     // 图标的样式
     const iconStyle = computed(() => ({
       transform: fold.value ? 'rotate(180deg)' : 'rotate(0deg)',
@@ -23,7 +21,6 @@ export const useLayoutStore = defineStore(
 
     return {
       fold,
-      width,
       iconStyle,
       toggle,
     }
