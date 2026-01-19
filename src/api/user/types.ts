@@ -18,3 +18,18 @@ export type LoginRequestData = {
 export interface LoginResponseData extends ResponseData {
   data: string
 }
+
+/** 获取用户信息 */
+// 返回的数据里data字段（用户信息）
+export interface UserInfoResponseData {
+  routes: string[]
+  buttons: string[]
+  roles: string[]
+  name: string
+  avatar: string
+}
+
+// 返回的数据
+export interface GetUserInfoResponseData extends ResponseData {
+  data: UserInfoResponseData
+}

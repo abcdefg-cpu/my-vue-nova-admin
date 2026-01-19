@@ -109,22 +109,6 @@ const { menuRoutes } = userStore
           margin: 0 !important; /* 清除 tooltip 中的图标边距 */
         }
       }
-
-      // :deep(.el-menu-item) {
-      //   width: 100%;
-      //   height: 42px;
-      //   padding: 0 10px;
-      //   // background-color: pink;
-      //   margin: 4px 0;
-      //   border-radius: 4px;
-      //   &:hover {
-      //     background-color: #fff;
-      //   }
-      //   &.is-active {
-      //     color: #fff;
-      //     background-color: var(--el-color-primary);
-      //   }
-      // }
     }
   }
 
@@ -134,7 +118,7 @@ const { menuRoutes } = userStore
     left: $nova-menu-width;
     width: calc(100vw - #{$nova-menu-width});
     height: $nova-tabbar-height;
-    background-color: antiquewhite;
+    background-color: #fff;
     transition: all 0.3s ease;
 
     &.layoutFold {

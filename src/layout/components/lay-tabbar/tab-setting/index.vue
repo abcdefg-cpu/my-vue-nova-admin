@@ -1,7 +1,11 @@
 <script lang="ts" setup name="TabSetting">
-// import { ref } from 'vue'
-import TabBell from './components/tab-bell.vue'
-import TabSearch from './components/tab-search.vue'
+import { onMounted } from 'vue'
+import TabBell from './components/TabBell.vue'
+import TabSearch from './components/TabSearch.vue'
+import { useUserStore } from '@/stores/modules/user'
+/* 路由与状态 */
+const userStore = useUserStore()
+
 /* 方法 */
 // 刷新页面
 const refreshScreen = () => {
@@ -18,6 +22,20 @@ const changeFullScreen = () => {
     document.exitFullscreen()
   }
 }
+
+// 获取用户信息
+const getUserInfo = () => {
+  userStore.getUserInfo()
+}
+
+// 退出登录
+const onLogout = () => {
+  userStore.userLogout()
+}
+
+onMounted(() => {
+  getUserInfo()
+})
 </script>
 
 <template>
@@ -31,11 +49,24 @@ const changeFullScreen = () => {
     <TabBell />
 
     <el-dropdown class="dropdown" placement="bottom" trigger="click">
-      <img src="@/assets/icons/avatar.svg" class="avatar" />
+      <span class="user-info">
+        <img :src="userStore.userInfo.avatar" class="avatar" />
+        <span class="name">{{ userStore.userInfo.name }}</span>
+      </span>
       <template #dropdown>
         <el-dropdown-menu>
-          <el-dropdown-item icon="Operation">账户设置</el-dropdown-item>
-          <el-dropdown-item icon="Remove">退出系统</el-dropdown-item>
+          <el-dropdown-item>
+            <span>
+              <el-icon><Operation /></el-icon>
+              账户设置
+            </span>
+          </el-dropdown-item>
+          <el-dropdown-item>
+            <span @click="onLogout">
+              <el-icon><Remove /></el-icon>
+              退出系统
+            </span>
+          </el-dropdown-item>
         </el-dropdown-menu>
       </template>
     </el-dropdown>
@@ -49,15 +80,31 @@ const changeFullScreen = () => {
   display: flex;
 
   .dropdown {
-    margin-left: 12px;
-  }
+    margin: 0 12px;
 
-  .avatar {
-    width: 24px;
-    height: 24px;
-    margin-right: 12px;
-    outline: none;
-    border-radius: 50%;
+    .user-info {
+      .avatar {
+        width: 24px;
+        height: 24px;
+        margin-right: 5px;
+        vertical-align: middle;
+        outline: none;
+        border-radius: 50%;
+      }
+    }
+  }
+}
+</style>
+
+<style lang="scss">
+.el-dropdown-menu {
+  width: 120px !important;
+
+  .el-dropdown-menu__item {
+    span {
+      width: 100%;
+      padding: 5px 16px;
+    }
   }
 }
 </style>
