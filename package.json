@@ -92,26 +92,5 @@
     "vite-plugin-vue-devtools": "^8.0.5",
     "vite-svg-loader": "^5.1.0",
     "vue-tsc": "^3.1.5"
-  },
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx}": [
-      "prettier --cache --ignore-unknown --write",
-      "eslint --cache --fix"
-    ],
-    "*.json": [
-      "prettier --cache --write"
-    ],
-    "*.vue": [
-      "prettier --write",
-      "eslint --cache --fix",
-      "stylelint --fix --allow-empty-input"
-    ],
-    "*.{css,scss,html}": [
-      "prettier --cache --ignore-unknown --write",
-      "stylelint --fix --allow-empty-input"
-    ],
-    "*.md": [
-      "prettier --cache --ignore-unknown --write"
-    ]
   }
 }
