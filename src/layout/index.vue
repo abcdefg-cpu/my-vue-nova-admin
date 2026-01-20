@@ -87,6 +87,10 @@ const { menuRoutes } = userStore
         }
       }
 
+      :deep(.el-sub-menu .el-menu-item) {
+        padding: 0 30px;
+      }
+
       :deep(.el-sub-menu .el-sub-menu__title) {
         height: 50px;
         padding: 0 10px;

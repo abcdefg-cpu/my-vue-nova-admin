@@ -45,7 +45,11 @@ export default defineConfig(({ mode }) => {
         dts: '.temp/components.d.ts', // 生成到临时目录
 
         // 解析器：Element Plus 组件
-        resolvers: [ElementPlusResolver()],
+        resolvers: [
+          ElementPlusResolver({
+            importStyle: 'css',
+          }),
+        ],
 
         // 包含的文件类型
         extensions: ['vue'],
@@ -62,7 +66,6 @@ export default defineConfig(({ mode }) => {
         // 全局组件
         globalNamespaces: [],
 
-        // 指令自动导入
         directives: true,
       }),
     ],

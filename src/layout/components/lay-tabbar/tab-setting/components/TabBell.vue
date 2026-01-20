@@ -126,7 +126,11 @@ const navItems = [
   </el-dropdown>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
+.dropdown {
+  margin: 0 12px;
+}
+
 .bell-dropdown-popper {
   min-width: 330px;
   border-radius: 4px;
@@ -178,8 +182,57 @@ const navItems = [
     max-height: 312px;
     padding: 15px 24px 0;
     overflow-y: auto;
-  }
 
+    .news {
+      display: flex;
+      width: 100%;
+      color: #303133;
+      background-color: #fff;
+
+      .img {
+        padding-right: 20px;
+      }
+
+      .name {
+        padding-bottom: 6px;
+        font-size: 14px;
+      }
+
+      .message {
+        font-size: 12px;
+      }
+
+      .time {
+        margin-top: 2px;
+        font-size: 12px;
+      }
+    }
+
+    .backlog {
+      width: 100%;
+
+      .title {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        padding-bottom: 6px;
+        font-size: 14px;
+      }
+
+      .task {
+        width: 100%;
+        font-size: 12px;
+        word-break: break-all; // 在亚洲语言中更有效
+        overflow-wrap: break-word; // 允许在单词内换行
+        white-space: normal; // 默认值，正常换行
+      }
+    }
+  }
+}
+</style>
+
+<style lang="scss">
+.content-area {
   .el-dropdown-menu {
     padding: 0 !important;
     margin: 0 !important;
@@ -191,51 +244,6 @@ const navItems = [
       color: #303133 !important;
       background-color: #fff !important;
       border-bottom: 1px solid #eee !important;
-
-      .news {
-        display: flex;
-        width: 100%;
-        color: #303133;
-        background-color: #fff;
-
-        .img {
-          padding-right: 20px;
-        }
-
-        .name {
-          padding-bottom: 6px;
-          font-size: 14px;
-        }
-
-        .message {
-          font-size: 12px;
-        }
-
-        .time {
-          margin-top: 2px;
-          font-size: 12px;
-        }
-      }
-
-      .backlog {
-        width: 100%;
-
-        .title {
-          display: flex;
-          justify-content: space-between;
-          width: 100%;
-          padding-bottom: 6px;
-          font-size: 14px;
-        }
-
-        .task {
-          width: 100%;
-          font-size: 12px;
-          word-break: break-all; // 在亚洲语言中更有效
-          overflow-wrap: break-word; // 允许在单词内换行
-          white-space: normal; // 默认值，正常换行
-        }
-      }
     }
   }
 }

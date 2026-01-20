@@ -1,0 +1,10 @@
+module.exports = {
+  '*.{js,jsx,ts,tsx}': ['prettier --cache --ignore-unknown --write', 'eslint --cache --fix'],
+  '*.json': ['prettier --cache --write'],
+  '*.vue': ['prettier --write', 'eslint --cache --fix', 'stylelint --fix --allow-empty-input'],
+  '*.{css,scss,html}': [
+    'prettier --cache --ignore-unknown --write',
+    'stylelint --fix --allow-empty-input',
+  ],
+  '*.md': ['prettier --cache --ignore-unknown --write'],
+}

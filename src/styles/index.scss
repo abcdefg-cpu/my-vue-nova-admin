@@ -1,10 +1,9 @@
 /* 重置样式 */
 @use './reset';
 @use './element-plus';
+@use './dark'; // @use './variable';
 
-// @use './variable';
-
-// /* 自定义全局 CssVar */
+/* 自定义全局 CssVar */
 // :root {
 //   /* 左侧菜单展开、收起动画时长 */
 //   --nova-transition-duration: 0.3s;

@@ -4,12 +4,12 @@ import pinia from './stores'
 /* 路由 */
 import router from './router'
 /* 样式 */
+import 'element-plus/dist/index.css'
 import '@/styles/index.scss'
 import '@/styles/tailwind.css'
-import 'element-plus/dist/index.css'
-/* element-plus图标 */
+/* element-plus */
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
-/* svg图标 */
+
 import 'virtual:svg-icons-register'
 /* motion动画 */
 import { MotionPlugin } from '@vueuse/motion'

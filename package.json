@@ -30,6 +30,7 @@
     "@iconify-json/ri": "^1.2.7",
     "@iconify/core": "^4.1.0",
     "@iconify/vue": "^5.0.0",
+    "@vueuse/core": "^14.1.0",
     "@vueuse/motion": "^3.0.3",
     "axios": "^1.13.2",
     "element-plus": "^2.13.0",
@@ -63,7 +64,7 @@
     "eslint-plugin-prettier": "^5.5.4",
     "eslint-plugin-vue": "~10.5.1",
     "globals": "^16.5.0",
-    "husky": "^8.0.0",
+    "husky": "^9.1.7",
     "jiti": "^2.6.1",
     "lint-staged": "^16.2.7",
     "mockjs": "^1.1.0",
@@ -91,5 +92,26 @@
     "vite-plugin-vue-devtools": "^8.0.5",
     "vite-svg-loader": "^5.1.0",
     "vue-tsc": "^3.1.5"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "prettier --cache --ignore-unknown --write",
+      "eslint --cache --fix"
+    ],
+    "*.json": [
+      "prettier --cache --write"
+    ],
+    "*.vue": [
+      "prettier --write",
+      "eslint --cache --fix",
+      "stylelint --fix --allow-empty-input"
+    ],
+    "*.{css,scss,html}": [
+      "prettier --cache --ignore-unknown --write",
+      "stylelint --fix --allow-empty-input"
+    ],
+    "*.md": [
+      "prettier --cache --ignore-unknown --write"
+    ]
   }
 }

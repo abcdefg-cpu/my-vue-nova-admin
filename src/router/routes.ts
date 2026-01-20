@@ -173,6 +173,19 @@ export const constantRoutes: MenuItem[] = [
     },
   },
 
+  /* 账户设置 */
+  {
+    path: '/account-settings',
+    name: 'AccountSettings',
+    component: () => import('@/views/account-settings/index.vue'),
+    meta: {
+      title: '账户设置',
+      icon: '',
+      hidden: true,
+      requiresAuth: true,
+    },
+  },
+
   // 任意路由
   {
     path: '/:pathMatch(.*)*',
