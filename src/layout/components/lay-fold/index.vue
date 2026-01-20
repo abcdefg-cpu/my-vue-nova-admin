@@ -7,7 +7,7 @@ const layoutStore = useLayoutStore()
 /* 业务 */
 // 点击折叠按钮，缩小菜单width
 const foldMenu = () => {
-  layoutStore.toggle()
+  layoutStore.toggleFold()
 }
 </script>
 

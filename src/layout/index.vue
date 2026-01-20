@@ -47,13 +47,14 @@ const { menuRoutes } = userStore
 .layout-container {
   width: 100%;
   height: 100vh;
-  background-color: $nova-base-background;
+  // background-color: $nova-base-background;
 
   .layout-sidebar {
     position: relative;
     width: $nova-menu-width;
     height: 100vh;
-    background-color: $nova-menu-background;
+    background: $nova-menu-background;
+    border-right: $nova-menu-border;
     transition: all 0.3s ease;
 
     &.layoutFold {
@@ -66,53 +67,7 @@ const { menuRoutes } = userStore
     }
 
     .el-menu {
-      padding: 0 10px;
       border: none;
-
-      :deep(.el-menu-item),
-      :deep(.el-sub-menu .el-menu-item) {
-        width: 100%;
-        height: 50px;
-        padding: 0 10px;
-        margin: 4px 0;
-        border-radius: 4px;
-
-        &:hover {
-          background-color: #fff !important;
-        }
-
-        &.is-active {
-          color: #fff !important;
-          background-color: var(--el-color-primary) !important;
-        }
-      }
-
-      :deep(.el-sub-menu .el-menu-item) {
-        padding: 0 30px;
-      }
-
-      :deep(.el-sub-menu .el-sub-menu__title) {
-        height: 50px;
-        padding: 0 10px;
-
-        &:hover {
-          color: inherit !important;
-          background-color: transparent !important;
-        }
-      }
-
-      /* 修改 tooltip 样式 */
-      :deep(.el-menu-tooltip__trigger) {
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        width: 100% !important;
-
-        .el-icon {
-          padding: 0 !important;
-          margin: 0 !important; /* 清除 tooltip 中的图标边距 */
-        }
-      }
     }
   }
 
