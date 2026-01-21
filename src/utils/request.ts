@@ -30,7 +30,7 @@ request.interceptors.request.use(
 
 /* 响应拦截器 */
 request.interceptors.response.use(
-  // 第一步：处理有响应的情况（HTTP请求发出去了，后端有返回
+  // 第一步：处理有响应的情况（HTTP请求发出去了，后端有返回）
   (response: AxiosResponse) => {
     const { data } = response
     const httpStatus = response.status
@@ -54,7 +54,7 @@ request.interceptors.response.use(
     if (code === 200) {
       return data
     } else {
-      // ElMessage.error(msg || '业务请求失败！')
+      ElMessage.error(msg || '业务请求失败！')
       throw new Error(`BUSINESS_ERROR: ${code} - ${msg}`)
     }
   },

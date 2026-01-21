@@ -7,7 +7,7 @@ export interface ResponseData {
   ok: boolean
 }
 
-/** 获取一级分类 */
+/** 获取分类 */
 // 返回的数据里data字段
 export interface CategoryResponseData {
   id: number | string
@@ -19,4 +19,26 @@ export interface CategoryResponseData {
 // 返回的数据
 export interface GetCategoryResponseData extends ResponseData {
   data: CategoryResponseData[]
+}
+
+/* 获取分类下已有的属性与属性值 */
+// data里attrValueList（属性值）字段
+export interface AttrValueList {
+  id?: number | string
+  valueName: string
+  attrId?: number
+  flag?: boolean
+}
+
+// 返回的数据里data字段
+export interface AttrResponseData {
+  id?: number | string
+  attrName: string
+  categoryId: number | string
+  categoryLevel: number
+  attrValueList: AttrValueList[]
+}
+// 返回的数据
+export interface GetAttrResponseData extends ResponseData {
+  data: AttrResponseData[]
 }

@@ -27,8 +27,30 @@ const getCategory3 = async () => {
   C3List.value = res.data
 }
 
+/* 一级分类发生变化 */
+const handleC1Change = () => {
+  C2Id.value = ''
+  C3Id.value = ''
+  C2List.value = []
+  C3List.value = []
+  getCategory2()
+}
+
+/* 二级分类发生变化 */
+const handleC2Change = () => {
+  C3Id.value = ''
+  C3List.value = []
+  getCategory3()
+}
+
 onMounted(() => {
   getCategory1()
+})
+
+defineExpose({
+  C1Id,
+  C2Id,
+  C3Id,
 })
 </script>
 
@@ -41,7 +63,7 @@ onMounted(() => {
           clearable
           placeholder="请选择"
           style="width: 220px"
-          @change="getCategory2()"
+          @change="handleC1Change()"
         >
           <el-option v-for="C1 in C1List" :key="C1.id" :label="C1.name" :value="C1.id" />
         </el-select>
@@ -52,7 +74,7 @@ onMounted(() => {
           clearable
           placeholder="请选择"
           style="width: 220px"
-          @change="getCategory3()"
+          @change="handleC2Change()"
         >
           <el-option v-for="C2 in C2List" :key="C2.id" :label="C2.name" :value="C2.id" />
         </el-select>
@@ -72,9 +94,5 @@ onMounted(() => {
   align-items: center;
   height: 50px;
   margin-bottom: 0;
-}
-
-:deep(.el-form-item__label) {
-  font-weight: normal !important;
 }
 </style>
