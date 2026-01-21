@@ -31,6 +31,3 @@ export interface TrademarkResponseData {
 export interface GetTrademarkResponseData extends ResponseData {
   data: TrademarkResponseData
 }
-
-/* 新增/编辑品牌 */
-// 请求参数

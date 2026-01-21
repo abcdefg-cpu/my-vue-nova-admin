@@ -1,5 +1,7 @@
 <script lang="ts" setup name="ProdAttr"></script>
 
-<template>ProdAttr</template>
+<template>
+  <Category />
+</template>
 
 <style lang="scss" scoped></style>

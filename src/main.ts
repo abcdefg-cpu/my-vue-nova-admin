@@ -9,7 +9,7 @@ import '@/styles/index.scss'
 import '@/styles/tailwind.css'
 /* element-plus */
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
-
+/* SVG */
 import 'virtual:svg-icons-register'
 /* motion动画 */
 import { MotionPlugin } from '@vueuse/motion'
