@@ -54,7 +54,7 @@ request.interceptors.response.use(
     if (code === 200) {
       return data
     } else {
-      ElMessage.error(msg || '业务请求失败！')
+      // ElMessage.error(msg || '业务请求失败！')
       throw new Error(`BUSINESS_ERROR: ${code} - ${msg}`)
     }
   },

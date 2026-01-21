@@ -47,12 +47,13 @@ const { menuRoutes } = userStore
 .layout-container {
   width: 100%;
   height: 100vh;
-  // background-color: $nova-base-background;
+  background-color: $nova-base-background;
 
   .layout-sidebar {
     position: relative;
     width: $nova-menu-width;
     height: 100vh;
+    padding: 0 10px;
     background: $nova-menu-background;
     border-right: $nova-menu-border;
     transition: all 0.3s ease;
@@ -92,6 +93,7 @@ const { menuRoutes } = userStore
     left: $nova-menu-width;
     width: calc(100vw - #{$nova-menu-width});
     height: calc(100vh - #{$nova-tabbar-height});
+    padding: 20px;
     transition: all 0.3s ease;
 
     &.layoutFold {
