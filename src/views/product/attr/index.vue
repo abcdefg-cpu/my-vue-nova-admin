@@ -6,8 +6,10 @@ import { GetAttrAPI, DeleteAttrAPI } from '@/api/product/attr'
 import type { AttrResponseData } from '@/api/product/attr/types'
 import AttrEdit from './components/AttrEdit.vue'
 
+// 初始化表单
 const editFormData = ref<AttrResponseData | null>(null)
 
+// 场景切换
 const scene = ref(1)
 
 /* 分类选择器 */
