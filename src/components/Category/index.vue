@@ -3,6 +3,10 @@ import { onMounted, ref } from 'vue'
 import { GetCategory1API, GetCategory2API, GetCategory3API } from '@/api/product/attr'
 import type { CategoryResponseData } from '@/api/product/attr/types'
 
+const props = defineProps({
+  scene: Number,
+})
+
 /* 获取一级分类 */
 const C1List = ref<CategoryResponseData[]>([])
 const C1Id = ref()
@@ -61,6 +65,7 @@ defineExpose({
         <el-select
           v-model="C1Id"
           clearable
+          :disabled="props.scene === 0"
           placeholder="请选择"
           style="width: 220px"
           @change="handleC1Change()"
@@ -72,6 +77,7 @@ defineExpose({
         <el-select
           v-model="C2Id"
           clearable
+          :disabled="props.scene === 0"
           placeholder="请选择"
           style="width: 220px"
           @change="handleC2Change()"
@@ -80,7 +86,13 @@ defineExpose({
         </el-select>
       </el-form-item>
       <el-form-item label="三级分类">
-        <el-select v-model="C3Id" clearable placeholder="请选择" style="width: 220px">
+        <el-select
+          v-model="C3Id"
+          clearable
+          :disabled="props.scene === 0"
+          placeholder="请选择"
+          style="width: 220px"
+        >
           <el-option v-for="C3 in C3List" :key="C3.id" :label="C3.name" :value="C3.id" />
         </el-select>
       </el-form-item>

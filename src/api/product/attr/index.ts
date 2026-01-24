@@ -31,4 +31,4 @@ export const DeleteAttrAPI = (attrId: number | string) =>
 
 // 新增/修改属性
 export const OperateAttrAPI = (data: AttrResponseData) =>
-  request.post<any, any>(API.OPERATEATTR_URL + data)
+  request.post<any, any>(API.OPERATEATTR_URL, data)
