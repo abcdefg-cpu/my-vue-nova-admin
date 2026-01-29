@@ -20,7 +20,7 @@ const dialogFormData = ref<TrademarkRecords | null>(null)
 /* 获取已有品牌 */
 const trademarkList = ref([])
 const total = ref()
-const getTrademarkObj = async () => {
+const getTrademark = async () => {
   const res = await GetTrademarkAPI(paginationRef.value.currentPage, paginationRef.value.pageSize)
   trademarkList.value = res.data.records
   total.value = res.data.total
@@ -43,14 +43,14 @@ const deleteTrademark = async (row: TrademarkRecords) => {
     await DeleteTrademarkAPI(row.id)
     ElMessage.success('删除成功！')
     paginationRef.value.currentPage = 1
-    getTrademarkObj()
+    getTrademark()
   } catch {
     ElMessage.error('删除失败！')
   }
 }
 
 onMounted(() => {
-  getTrademarkObj()
+  getTrademark()
 })
 
 /* 跳转页面 */
@@ -60,7 +60,7 @@ const changeCurrentPage = () => {
 
 /* 保存成功 */
 const handleSaveSuccess = () => {
-  getTrademarkObj()
+  getTrademark()
 }
 </script>
 
@@ -100,7 +100,7 @@ const handleSaveSuccess = () => {
         </template>
       </el-table-column>
     </el-table>
-    <Pagination ref="paginationRef" :getTrademarkObj="getTrademarkObj" :total="total" />
+    <Pagination ref="paginationRef" :get-data="getTrademark" :total="total" />
   </el-card>
 
   <!-- 对话框 -->

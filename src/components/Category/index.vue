@@ -1,7 +1,7 @@
 <script lang="ts" setup name="Category">
 import { onMounted, ref } from 'vue'
-import { GetCategory1API, GetCategory2API, GetCategory3API } from '@/api/product/attr'
-import type { CategoryResponseData } from '@/api/product/attr/types'
+import { GetCategory1API, GetCategory2API, GetCategory3API } from '@/api/product/category'
+import type { CategoryResponseData } from '@/api/product/category/types'
 
 const props = defineProps({
   scene: Number,

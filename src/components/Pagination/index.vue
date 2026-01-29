@@ -3,7 +3,7 @@ import { ref } from 'vue'
 
 const props = defineProps<{
   total: number
-  getTrademarkObj: () => any
+  getData?: () => Promise<void>
 }>()
 
 // 当前页
@@ -12,14 +12,18 @@ const currentPage = ref(1)
 const pageSize = ref(4)
 
 // 数据条数变化
-const handleSizeChange = () => {
-  props.getTrademarkObj()
+const handleSizeChange = async () => {
   currentPage.value = 1
+  if (props.getData) {
+    await props.getData()
+  }
 }
 
 // 当前页数变化
-const handleCurrentChange = () => {
-  props.getTrademarkObj()
+const handleCurrentChange = async () => {
+  if (props.getData) {
+    await props.getData()
+  }
 }
 
 defineExpose({
